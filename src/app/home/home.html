@@ -1,0 +1,132 @@
+<div class="home">
+  <header>
+
+    @if (personagemEscolhido) {
+      <button (click)="trocarPersonagem()">Trocar personagem</button>
+    }
+
+    <button (click)="voltarLogin()">Sair</button>
+  </header>
+
+  @if (!personagemEscolhido) {
+    <section class="selecao-personagens">
+      <h2>ESCOLHA SEU PERSONAGEM</h2>
+      <p>Utilize a Bomba Cordão e Exorcize a Fazenda do Seu Avô!</p>
+
+      <div class="lista-cards">
+        <div class="card-personagem">
+          <img
+            src="/c6c36f2f-c1e7-4efc-978f-f349d1842470.png"
+            alt="Abestado"
+            class="img-preview"
+          >
+          <h3>Abestado</h3>
+          <button
+            (click)="escolherPersonagem('/c6c36f2f-c1e7-4efc-978f-f349d1842470.png')"
+          >
+            Escolher
+          </button>
+        </div>
+
+        <div class="card-personagem">
+          <img
+            src="/871629bd-5569-4da3-9e8d-10d16546bee3.png"
+            alt="Arretado"
+            class="img-preview"
+          >
+          <h3>Arretado</h3>
+          <button
+            (click)="escolherPersonagem('/871629bd-5569-4da3-9e8d-10d16546bee3.png')"
+          >
+            Escolher
+          </button>
+        </div>
+
+        <div class="card-personagem">
+          <img
+            src="/1791604118696.png"
+            alt="Cangaceiro"
+            class="img-preview"
+          >
+          <h3>Cangaceiro</h3>
+          <button
+            (click)="escolherPersonagem('/1791604118696.png')"
+          >
+            Escolher
+          </button>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <section class="jogo">
+      <h2>FASE 1</h2>
+
+      <p class="instrucoes">
+        Setas: movimentar | Espaço: colocar bomba
+        | Inimigos restantes: {{ inimigos.length }}
+      </p>
+
+      <div
+        class="arena"
+        [style.width.px]="colunas * tamanhoCelula"
+        [style.height.px]="linhas * tamanhoCelula"
+      >
+        @for (obs of obstaculos; track $index) {
+          <div
+            class="obstaculo"
+            [style.left.px]="obs.x * tamanhoCelula"
+            [style.top.px]="obs.y * tamanhoCelula"
+          ></div>
+        }
+
+        @for (inimigo of inimigos; track inimigo.id) {
+          <div class="inimigo"
+          [style.left.px]="inimigo.x * tamanhoCelula"
+          [style.top.px]="inimigo.y * tamanhoCelula">
+          <img src="/inimigo.png" alt="Inimigo">
+        
+        </div>
+        }
+
+        @for (bomba of bombas; track bomba.id) {
+          <div
+            class="bomba"
+            [class.explodindo]="bomba.explodindo"
+            [style.left.px]="bomba.x * tamanhoCelula"
+            [style.top.px]="bomba.y * tamanhoCelula"
+          >
+            @if (!bomba.explodindo) {
+              <img src="/bomba.png" alt="Bomba" class="imagem-bomba">
+            }
+
+            @for (celula of bomba.explosao; track $index) {
+              <div
+                class="fogo"
+                [style.left.px]="(celula.x - bomba.x) * tamanhoCelula"
+                [style.top.px]="(celula.y - bomba.y) * tamanhoCelula"
+              ></div>
+            }
+          </div>
+        }
+
+        <img
+          [src]="imagemSelecionada"
+          class="player"
+          alt="Jogador"
+          [style.left.px]="jogadorX * tamanhoCelula + 5"
+          [style.top.px]="jogadorY * tamanhoCelula + 5"
+        >
+      </div>
+
+      @if (jogoConcluido) {
+        <div class="conclusao">
+          <h2>FASE CONCLUÍDA!</h2>
+          <p>Você derrotou todos os inimigos!</p>
+
+          <button (click)="reiniciar()">Jogar novamente</button>
+          <button (click)="voltarLogin()">Voltar ao login</button>
+        </div>
+      }
+    </section>
+  }
+</div>

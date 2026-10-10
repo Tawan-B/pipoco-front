@@ -1,0 +1,258 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #121212;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+  color: #f4d06f;
+  background:
+    linear-gradient(rgba(30, 27, 24, 0.88), rgba(44, 29, 17, 0.9)),
+    url('/images.png') center / cover fixed;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+header h1 {
+  color: #f39c12;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.selecao-personagens {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.selecao-personagens h2,
+.jogo h2 {
+  color: #f39c12;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.selecao-personagens p,
+.instrucoes {
+  color: #d0c2b3;
+}
+
+.lista-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.card-personagem {
+  width: 180px;
+  padding: 20px;
+  border: 2px solid #8c3b1e;
+  border-radius: 12px;
+  background: #1f1b18;
+  box-shadow: 0 10px 25px #0009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.img-preview {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  background: #2c2522;
+  border: 1px solid #5a4033;
+  border-radius: 8px;
+}
+
+.card-personagem h3 {
+  margin: 0;
+}
+
+/* AREA */
+
+.jogo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.jogo h2 {
+  margin-bottom: 0;
+}
+
+.instrucoes {
+  margin: 12px 0;
+  font-size: 14px;
+}
+
+.arena {
+  position: relative;
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  border: 6px solid #8c3b1e;
+  border-radius: 4px;
+  background-color: #635b3f;
+  background-image:
+    linear-gradient(#ffffff0a 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff0a 1px, transparent 1px);
+  background-size: 40px 40px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px #000c;
+}
+
+.obstaculo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(135deg, #72503b, #3e2723);
+  border: 2px solid #a06b45;
+  box-shadow:
+    inset 2px 2px 4px #ffffff18,
+    inset -3px -3px 5px #0008;
+  z-index: 2;
+}
+
+
+.player {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.bomba {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.bomba.explodindo {
+  z-index: 5;
+}
+
+.fogo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #ff8c00;
+  border: 2px solid #ffdf52;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 0 14px #ff4500;
+  opacity: 0.9;
+  z-index: 6;
+  pointer-events: none;
+}
+
+
+.conclusao {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(340px, 85vw);
+  box-sizing: border-box;
+  padding: 25px;
+  background: #1f1b18f5;
+  border: 2px solid #8c3b1e;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px #000c;
+  text-align: center;
+}
+
+.conclusao h2 {
+  color: #f39c12;
+}
+
+button {
+  padding: 10px 16px;
+  cursor: pointer;
+  background: #d35400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #e67e22;
+}
+
+button:focus-visible {
+  outline: 2px solid #f4d06f;
+  outline-offset: 3px;
+}
+
+.imagem-bomba {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.inimigo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.inimigo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@media (max-width: 650px) {
+  .home {
+    padding: 8px;
+    overflow-x: auto;
+  }
+
+  .arena {
+    transform-origin: top center;
+  }
+
+  .card-personagem {
+    width: 140px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+}

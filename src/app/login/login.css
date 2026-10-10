@@ -1,0 +1,112 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+}
+
+.tela {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e1b18 0%, #2c1d11 100%);
+  color: #f4d06f;
+}
+
+.card {
+  background: #1f1b18;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid #8c3b1e;
+  box-sizing: border-box;
+}
+
+.card h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #f39c12;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.centralizadora {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card input {
+  padding: 12px 15px;
+  background-color: #2c2522;
+  border: 1px solid #5a4033;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.card input::placeholder {
+  color: #8c7b73;
+}
+
+.card input:focus {
+  border-color: #e67e22;
+}
+
+.card p {
+  color: #b0a499;
+  font-size: 0.9rem;
+  margin: 15px 0 10px 0;
+}
+
+.card button {
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  width: 100%;
+}
+
+.card button[type="submit"] {
+  background-color: #d35400;
+  color: white;
+  box-shadow: 0 4px 10px rgba(211, 84, 0, 0.4);
+}
+
+.card button[type="submit"]:hover:not(:disabled) {
+  background-color: #e67e22;
+}
+
+.card button[type="submit"]:disabled {
+  background-color: #533b2e;
+  color: #8c7b73;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.card button[type="button"] {
+  background-color: #3e2723;
+  color: #f4d06f;
+  border: 1px solid #5a4033;
+}
+
+.card button[type="button"]:hover {
+  background-color: #4e342e;
+}
+
+.card button:active {
+  transform: scale(0.98);
+}

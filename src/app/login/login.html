@@ -1,0 +1,38 @@
+
+<div class="tela">
+  <div class="card">
+
+    <h1>PIPOCO!</h1>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="enviarDados()"
+      class="centralizadora"
+    >
+
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Digite seu email"
+      >
+
+      <input
+        type="password"
+        formControlName="senha"
+        placeholder="Digite sua senha"
+      >
+
+      <button type="submit" [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+
+    </form>
+
+    <p>Ainda não possui uma conta?</p>
+
+    <button type="button" (click)="irParaCadastro()">
+      Cadastre-se
+    </button>
+
+  </div>
+</div>

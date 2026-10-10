@@ -1,0 +1,45 @@
+
+<div class="tela">
+  <div class="card">
+
+    <h1>Criar conta</h1>
+
+    <form
+      [formGroup]="cadastroForm"
+      class="centralizadora"
+      (ngSubmit)="enviarDados()"
+    >
+
+      <input
+        type="text"
+        formControlName="nome"
+        placeholder="Digite seu nome"
+      >
+
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Digite seu email"
+      >
+
+      <input
+        type="password"
+        formControlName="senha"
+        placeholder="Digite sua senha"
+      >
+
+      <button
+        type="submit"
+        [disabled]="cadastroForm.invalid"
+      >
+        Cadastrar
+      </button>
+
+    </form>
+
+    <button type="button" (click)="voltarLogin()">
+      Voltar ao login
+    </button>
+
+  </div>
+</div>
