@@ -1,38 +1,72 @@
-
 <div class="tela">
   <div class="card">
 
-    <h1>PIPOCO!</h1>
+    @if (!recuperandoSenha) {
+      <h1>PIPOCO!</h1>
 
-    <form
-      [formGroup]="loginForm"
-      (ngSubmit)="enviarDados()"
-      class="centralizadora"
-    >
-
-      <input
-        type="email"
-        formControlName="email"
-        placeholder="Digite seu email"
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="enviarDados()"
+        class="centralizadora"
       >
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Digite seu email"
+        >
 
-      <input
-        type="password"
-        formControlName="senha"
-        placeholder="Digite sua senha"
-      >
+        <input
+          type="password"
+          formControlName="senha"
+          placeholder="Digite sua senha"
+        >
 
-      <button type="submit" [disabled]="loginForm.invalid">
-        Entrar
+        <button type="submit" [disabled]="loginForm.invalid">
+          Entrar
+        </button>
+      </form>
+
+      <button type="button" class="btn-link" (click)="alternarRecuperacao(true)">
+        Esqueceu a senha?
       </button>
 
-    </form>
+      <p>Ainda não possui uma conta?</p>
 
-    <p>Ainda não possui uma conta?</p>
+      <button type="button" (click)="irParaCadastro()">
+        Cadastre-se
+      </button>
 
-    <button type="button" (click)="irParaCadastro()">
-      Cadastre-se
-    </button>
+    } @else {
+
+      <h1>Recuperar Senha</h1>
+      <p>Digite seu e-mail cadastrado e defina uma nova senha:</p>
+
+      <form
+        [formGroup]="recuperarForm"
+        (ngSubmit)="atualizarSenha()"
+        class="centralizadora"
+      >
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Seu e-mail cadastrado"
+        >
+
+        <input
+          type="password"
+          formControlName="novaSenha"
+          placeholder="Digite a nova senha"
+        >
+
+        <button type="submit" [disabled]="recuperarForm.invalid">
+          Atualizar Senha
+        </button>
+      </form>
+
+      <button type="button" (click)="alternarRecuperacao(false)">
+        Voltar ao login
+      </button>
+    }
 
   </div>
 </div>

@@ -238,6 +238,14 @@ button:focus-visible {
   pointer-events: none;
 }
 
+.btn-perigo {
+  background: #a93226 !important;
+}
+
+.btn-perigo:hover {
+  background: #c0392b !important;
+}
+
 @media (max-width: 650px) {
   .home {
     padding: 8px;

@@ -110,3 +110,21 @@ html, body {
 .card button:active {
   transform: scale(0.98);
 }
+
+.card button.btn-link {
+  background-color: transparent;
+  color: #b0a499;
+  border: none;
+  box-shadow: none;
+  font-size: 0.85rem;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  padding: 0;
+  text-decoration: underline;
+  width: auto;
+}
+
+.card button.btn-link:hover {
+  background-color: transparent;
+  color: #f4d06f;
+}

@@ -1,6 +1,5 @@
 <div class="home">
   <header>
-
     @if (personagemEscolhido) {
       <button (click)="trocarPersonagem()">Trocar personagem</button>
     }
@@ -56,6 +55,13 @@
           </button>
         </div>
       </div>
+
+      <!-- BOTÃO DE DELETAR CONTA (ACIONA O MÉTODO DELETE DA API) -->
+      <div style="margin-top: 40px;">
+        <button class="btn-perigo" (click)="deletarConta()">
+          Excluir minha conta
+        </button>
+      </div>
     </section>
   } @else {
     <section class="jogo">
@@ -84,7 +90,6 @@
           [style.left.px]="inimigo.x * tamanhoCelula"
           [style.top.px]="inimigo.y * tamanhoCelula">
           <img src="/inimigo.png" alt="Inimigo">
-        
         </div>
         }
 

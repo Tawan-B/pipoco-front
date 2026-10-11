@@ -1,5 +1,6 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 interface Celula {
   x: number;
@@ -46,32 +47,35 @@ export class Home implements OnDestroy {
   private temporizadores: ReturnType<typeof setTimeout>[] = [];
   private intervaloInimigos?: ReturnType<typeof setInterval>;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient
+  ) {
     this.criarMapa();
   }
 
   private criarMapa(): void {
-  this.obstaculos = [];
+    this.obstaculos = [];
 
-  for (let y = 0; y < this.linhas; y++) {
-    for (let x = 0; x < this.colunas; x++) {
+    for (let y = 0; y < this.linhas; y++) {
+      for (let x = 0; x < this.colunas; x++) {
 
-      const borda =
-        x === 0 ||
-        y === 0 ||
-        x === this.colunas - 1 ||
-        y === this.linhas - 1;
+        const borda =
+          x === 0 ||
+          y === 0 ||
+          x === this.colunas - 1 ||
+          y === this.linhas - 1;
 
-      const pilar =
-        x % 2 === 0 &&
-        y % 2 === 0;
+        const pilar =
+          x % 2 === 0 &&
+          y % 2 === 0;
 
-      if (borda || pilar) {
-        this.obstaculos.push({ x, y });
+        if (borda || pilar) {
+          this.obstaculos.push({ x, y });
+        }
       }
     }
   }
-}
 
   escolherPersonagem(caminhoImagem: string): void {
     this.imagemSelecionada = caminhoImagem;
@@ -82,6 +86,39 @@ export class Home implements OnDestroy {
   trocarPersonagem(): void {
     this.pararInimigos();
     this.personagemEscolhido = false;
+  }
+
+  deletarConta(): void {
+    if (!confirm('Tem certeza que deseja excluir sua conta permanentemente?')) {
+      return;
+    }
+
+    const usuarioSalvo = localStorage.getItem('usuario');
+    if (!usuarioSalvo) {
+      alert('Nenhum usuário logado encontrado.');
+      this.voltarLogin();
+      return;
+    }
+
+    const usuario = JSON.parse(usuarioSalvo);
+    const usuarioId = usuario.id;
+
+    if (!usuarioId) {
+      alert('ID do usuário inválido.');
+      return;
+    }
+
+    this.httpClient.delete(`http://localhost:8080/usuarios/${usuarioId}`).subscribe({
+      next: () => {
+        alert('Conta excluída com sucesso.');
+        localStorage.removeItem('usuario');
+        this.router.navigate(['/login']);
+      },
+      error: (erro) => {
+        console.error('Erro ao deletar conta:', erro);
+        alert('Não foi possível excluir a conta. Verifique o servidor.');
+      }
+    });
   }
 
   @HostListener('window:keydown', ['$event'])
